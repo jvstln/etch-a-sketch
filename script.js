@@ -24,5 +24,29 @@ function makeSquareGrid(size) {
   return container;
 }
 
+function getRandomColor() {
+  const colors = [
+    "cornflowerblue",
+    "tomato",
+    "mediumseagreen",
+    "goldenrod",
+    "slateblue",
+    "palevioletred",
+    "teal",
+    "coral",
+    "darkturquoise",
+    "indianred",
+  ];
+  const randomIndex = Math.floor(Math.random() * colors.length);
+  return colors[randomIndex];
+}
+
 const squareGrid = makeSquareGrid(16);
 document.body.appendChild(squareGrid);
+
+squareGrid.addEventListener("mouseover", (e) => {
+  const cell = e.target;
+  if (cell.classList.contains("cell")) {
+    cell.style.backgroundColor = getRandomColor();
+  }
+});
