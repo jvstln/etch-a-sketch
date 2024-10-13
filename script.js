@@ -18,7 +18,10 @@ function createGrid(size = 16) {
 function getRandomColor() {
   const hue = Math.random() * 360;
   const saturation = Math.random() * 20 + 40;
-  hslLight -= (hslLight * darkeningEffectPercentage) / 100;
+
+  if (hslLight < 0) hslLight = 0;
+  else if (hslLight > 100) hslLight = 100;
+  else hslLight -= (hslLight * darkeningEffectPercentage) / 100;
 
   return `hsl(${hue}, ${saturation}%, ${hslLight}%)`;
 }
