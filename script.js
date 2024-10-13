@@ -1,6 +1,10 @@
 const gridContainer = document.getElementById("gridContainer");
+const darkeningEffectElement = document.getElementById(
+  "darkeningEffectPercentage"
+);
 let darkeningEffectPercentage = 0;
 let hslLight = 60;
+let currentPressedKey = "";
 
 function createGrid(size = 16) {
   const cellSize = 500 / size;
@@ -26,11 +30,23 @@ function getRandomColor() {
   return `hsl(${hue}, ${saturation}%, ${hslLight}%)`;
 }
 
+function setDarkeningEffect(value) {
+  if (isNaN(value)) return;
+  darkeningEffectPercentage = Number(value);
+  darkeningEffectElement.value = Number(value);
+}
+
 gridContainer.addEventListener("mouseover", (e) => {
   const cell = e.target;
 
   if (cell.classList.contains("cell")) {
-    cell.style.backgroundColor = getRandomColor();
+    if (currentPressedKey === "e" || currentPressedKey == "w") {
+      cell.style.backgroundColor = "";
+    } else if (currentPressedKey === "b") {
+      cell.style.backgroundColor = "black";
+    } else if (currentPressedKey !== "s") {
+      cell.style.backgroundColor = getRandomColor();
+    }
   }
 });
 
@@ -45,9 +61,6 @@ document.getElementById("setGridSize").addEventListener("click", () => {
   }
 });
 
-const darkeningEffectElement = document.getElementById(
-  "darkeningEffectPercentage"
-);
 document.getElementById("reset").addEventListener("click", () => {
   createGrid();
   darkeningEffectPercentage = 0;
@@ -55,7 +68,23 @@ document.getElementById("reset").addEventListener("click", () => {
 });
 
 darkeningEffectElement.addEventListener("input", (e) => {
-  darkeningEffectPercentage = Number(e.target.value);
+  setDarkeningEffect(e.target.value);
+});
+
+window.addEventListener("keydown", (e) => {
+  if (e.key == "[") {
+    setDarkeningEffect(darkeningEffectPercentage - 1);
+  } else if (e.key == "]") {
+    setDarkeningEffect(darkeningEffectPercentage + 1);
+  } else if (e.key == "\\") {
+    setDarkeningEffect(0);
+  } else {
+    currentPressedKey = e.key.toLowerCase();
+  }
+});
+
+window.addEventListener("keyup", (e) => {
+  currentPressedKey = "";
 });
 
 createGrid();

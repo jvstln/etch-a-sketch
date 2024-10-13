@@ -49,3 +49,17 @@ button {
   background-color: #ededed;
   border-radius: 5px;
 }
+.key-info {
+  width: fit-content;
+  background: #ededed;
+  margin: 10px auto;
+  padding: 5px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+kbd {
+  background: #ccc;
+  padding: 2px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
