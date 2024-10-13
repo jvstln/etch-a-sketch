@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 #setGridSize {
   display: block;
   padding: 5px 15px;
@@ -5,8 +8,9 @@
 }
 .square-grid {
   border: 1px solid;
-  width: fit-content;
-  margin: 100px auto 0;
+  width: 500px;
+  height: 500px;
+  margin: 10px auto;
   padding: 10px;
 }
 .cell {
