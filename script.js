@@ -23,7 +23,7 @@ function createGrid(size = 16) {
     gridContainer.appendChild(
       createElement({
         className: `cell ${i}`,
-        style: `width: ${cellSize}px; height: ${cellSize}px;`,
+        style: `width: ${cellSize}px; height: ${cellSize}px; transition: 0.4s;`,
       })
     );
   }
