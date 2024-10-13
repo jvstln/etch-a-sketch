@@ -32,10 +32,8 @@ gridContainer.addEventListener("mouseover", (e) => {
 });
 
 document.getElementById("setGridSize").addEventListener("click", () => {
-  const newSize = prompt(
-    "Enter new grid size. (size must be less than 100)",
-    "16"
-  );
+  const newSize =
+    prompt("Enter new grid size. (size must be less than 100)", "16") ?? 16;
 
   if (newSize <= 100) {
     createGrid(newSize);
