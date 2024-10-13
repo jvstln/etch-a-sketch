@@ -1,5 +1,6 @@
-const setGridSizeButton = document.getElementById("setGridSize");
 const gridContainer = document.getElementById("gridContainer");
+let darkeningEffectPercentage = 0;
+let hslLight = 60;
 
 function createElement({
   type = "div",
@@ -32,9 +33,12 @@ function createGrid(size = 16) {
 function getRandomColor() {
   const hue = Math.random() * 360;
   const saturation = Math.random() * 20 + 40;
-  const light = Math.random() * 20 + 40;
 
-  return `hsl(${hue}, ${saturation}%, ${light}%)`;
+  if (hslLight > 100) hslLight = 100;
+  else if (hslLight < 1) hslLight = 0;
+  else hslLight -= (hslLight * (darkeningEffectPercentage || 0)) / 100;
+
+  return `hsl(${hue}, ${saturation}%, ${hslLight}%)`;
 }
 
 gridContainer.addEventListener("mouseover", (e) => {
@@ -45,7 +49,7 @@ gridContainer.addEventListener("mouseover", (e) => {
   }
 });
 
-setGridSizeButton.addEventListener("click", (e) => {
+document.getElementById("setGridSize").addEventListener("click", () => {
   const newSize = prompt(
     "Enter new grid size. (size must be less than 100)",
     "16"
@@ -63,5 +67,11 @@ document.getElementById("clear").addEventListener("click", () => {
     child.style.backgroundColor = "";
   }
 });
+
+document
+  .getElementById("darkeningEffectPercentage")
+  .addEventListener("input", (e) => {
+    darkeningEffectPercentage = e.target.value;
+  });
 
 createGrid();
