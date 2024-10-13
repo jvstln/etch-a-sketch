@@ -23,7 +23,7 @@ function createGrid(size = 16) {
     gridContainer.appendChild(
       createElement({
         className: `cell ${i}`,
-        style: `width: ${cellSize}px; height: ${cellSize}px; transition: 0.4s;`,
+        style: `width: ${cellSize}px; height: ${cellSize}px; transition: 0.2s;`,
       })
     );
   }
@@ -55,6 +55,12 @@ setGridSizeButton.addEventListener("click", (e) => {
     createGrid(newSize);
   } else {
     alert("Invalid size!");
+  }
+});
+
+document.getElementById("clear").addEventListener("click", () => {
+  for (const child of gridContainer.children) {
+    child.style.backgroundColor = "";
   }
 });
 
