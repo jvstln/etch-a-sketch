@@ -18,10 +18,7 @@ function createGrid(size = 16) {
 function getRandomColor() {
   const hue = Math.random() * 360;
   const saturation = Math.random() * 20 + 40;
-
-  if (hslLight > 100) hslLight = 100;
-  else if (hslLight < 1) hslLight = 0;
-  else hslLight -= (hslLight * (darkeningEffectPercentage || 0)) / 100;
+  hslLight -= (hslLight * darkeningEffectPercentage) / 100;
 
   return `hsl(${hue}, ${saturation}%, ${hslLight}%)`;
 }
@@ -47,16 +44,17 @@ document.getElementById("setGridSize").addEventListener("click", () => {
   }
 });
 
-document.getElementById("clear").addEventListener("click", () => {
-  for (const child of gridContainer.children) {
-    child.style.backgroundColor = "";
-  }
+const darkeningEffectElement = document.getElementById(
+  "darkeningEffectPercentage"
+);
+document.getElementById("reset").addEventListener("click", () => {
+  createGrid();
+  darkeningEffectPercentage = 0;
+  darkeningEffectElement.value = "";
 });
 
-document
-  .getElementById("darkeningEffectPercentage")
-  .addEventListener("input", (e) => {
-    darkeningEffectPercentage = e.target.value;
-  });
+darkeningEffectElement.addEventListener("input", (e) => {
+  darkeningEffectPercentage = Number(e.target.value);
+});
 
 createGrid();
