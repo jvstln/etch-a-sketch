@@ -30,24 +30,16 @@ function createGrid(size = 16) {
 }
 
 function getRandomColor() {
-  const colors = [
-    "cornflowerblue",
-    "tomato",
-    "mediumseagreen",
-    "goldenrod",
-    "slateblue",
-    "palevioletred",
-    "teal",
-    "coral",
-    "darkturquoise",
-    "indianred",
-  ];
-  const randomIndex = Math.floor(Math.random() * colors.length);
-  return colors[randomIndex];
+  const hue = Math.random() * 360;
+  const saturation = Math.random() * 20 + 40;
+  const light = Math.random() * 20 + 40;
+
+  return `hsl(${hue}, ${saturation}%, ${light}%)`;
 }
 
 gridContainer.addEventListener("mouseover", (e) => {
   const cell = e.target;
+
   if (cell.classList.contains("cell")) {
     cell.style.backgroundColor = getRandomColor();
   }
