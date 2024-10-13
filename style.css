@@ -1,3 +1,8 @@
+#setGridSize {
+  display: block;
+  padding: 5px 15px;
+  margin: 0 auto;
+}
 .square-grid {
   border: 1px solid;
   width: fit-content;

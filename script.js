@@ -1,3 +1,7 @@
+const setGridSizeButton = document.getElementById("setGridSize");
+let squareGrid = makeSquareGrid(16);
+document.body.appendChild(squareGrid);
+
 function createElement({ type = "div", text = "", className = "" }) {
   const newElement = document.createElement(type);
   newElement.textContent = text;
@@ -5,7 +9,7 @@ function createElement({ type = "div", text = "", className = "" }) {
   return newElement;
 }
 
-function makeSquareGrid(size) {
+function makeSquareGrid(size, containerReference) {
   const container = createElement({ className: "square-grid" });
   let rowContainer;
 
@@ -41,12 +45,26 @@ function getRandomColor() {
   return colors[randomIndex];
 }
 
-const squareGrid = makeSquareGrid(16);
-document.body.appendChild(squareGrid);
-
-squareGrid.addEventListener("mouseover", (e) => {
+function cellHoverEffectHandler(e) {
   const cell = e.target;
   if (cell.classList.contains("cell")) {
     cell.style.backgroundColor = getRandomColor();
   }
-});
+}
+
+function setGridSizeHandler(e) {
+  const newSize = Number(
+    prompt("Enter new grid size. (size must be less than 100)", "16")
+  );
+
+  if (newSize <= 100) {
+    const newSquareGrid = makeSquareGrid(newSize);
+    squareGrid.replaceWith(newSquareGrid);
+    newSquareGrid.addEventListener("mouseover", cellHoverEffectHandler);
+  } else {
+    alert("Invalid size!");
+  }
+}
+
+squareGrid.addEventListener("mouseover", cellHoverEffectHandler);
+setGridSizeButton.addEventListener("click", setGridSizeHandler);
