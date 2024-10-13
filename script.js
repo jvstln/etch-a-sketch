@@ -2,31 +2,16 @@ const gridContainer = document.getElementById("gridContainer");
 let darkeningEffectPercentage = 0;
 let hslLight = 60;
 
-function createElement({
-  type = "div",
-  text = "",
-  className = "",
-  style = "",
-}) {
-  const newElement = document.createElement(type);
-  newElement.textContent = text;
-  newElement.className = className;
-  newElement.style.cssText = style;
-  return newElement;
-}
-
 function createGrid(size = 16) {
   const cellSize = 500 / size;
 
   while (gridContainer.firstChild) gridContainer.firstChild.remove();
 
   for (let i = 1; i <= size * size; i++) {
-    gridContainer.appendChild(
-      createElement({
-        className: `cell ${i}`,
-        style: `width: ${cellSize}px; height: ${cellSize}px; transition: 0.2s;`,
-      })
-    );
+    const cell = document.createElement("div");
+    cell.style.cssText = `width: ${cellSize}px; height: ${cellSize}px; transition: 0.2s;`;
+    cell.className = `cell ${i}`;
+    gridContainer.appendChild(cell);
   }
 }
 

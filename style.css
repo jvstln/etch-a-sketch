@@ -16,7 +16,7 @@ p {
   display: flex;
   justify-content: center;
   gap: 5px;
-  background: #ddd;
+  background: #ededed;
   width: fit-content;
   border-radius: 10px;
   padding: 10px;
@@ -45,5 +45,7 @@ button {
   width: 500px;
   height: 500px;
   margin: 10px auto;
-  border: 1px solid;
+  border: 1px solid #ddd;
+  background-color: #ededed;
+  border-radius: 5px;
 }
