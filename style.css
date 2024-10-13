@@ -1,5 +1,4 @@
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -13,7 +12,9 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  align-content: center;
   width: 500px;
   height: 500px;
   margin: 10px auto;
+  border: 1px solid;
 }

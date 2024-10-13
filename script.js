@@ -15,8 +15,7 @@ function createElement({
 }
 
 function createGrid(size = 16) {
-  const marginSize = 1;
-  const cellSize = 500 / size - marginSize * 2;
+  const cellSize = 500 / size;
 
   while (gridContainer.firstChild) gridContainer.firstChild.remove();
 
@@ -24,7 +23,7 @@ function createGrid(size = 16) {
     gridContainer.appendChild(
       createElement({
         className: `cell ${i}`,
-        style: `width: ${cellSize}px; height: ${cellSize}px; border: 1px solid; margin: ${marginSize}px`,
+        style: `width: ${cellSize}px; height: ${cellSize}px;`,
       })
     );
   }
